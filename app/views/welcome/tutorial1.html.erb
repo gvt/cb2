@@ -1,0 +1,26 @@
+<% content_for :head do %>
+<script>
+function initCanvas() {
+	var canvas  = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+ 
+	var centerX = 288;
+	var centerY = 160;
+	var radius= 75;
+	var startingAngle = 1.1 * Math.PI;
+	var endingAngle = 1.9 * Math.PI;
+	var counterclockwise = false;
+ 
+	context.arc(centerX,centerY, radius, startingAngle, endingAngle,counterclockwise);
+	context.lineWidth=15;
+	context.strokeStyle="black"; // line color
+	context.stroke();
+
+}
+</script>
+<% end %>
+
+<canvas id="myCanvas" width="578" height="200"></canvas>
+<script>
+initCanvas();
+</script>
