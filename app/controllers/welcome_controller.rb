@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
     obj_file      = File.open(obj_file_path)
     @obj_content  = obj_file.read
     # .gsub(" \r", " ").gsub("\r", " ").gsub("  ", " ")
-    render :layout => 'obj_viewer'
+    # render :layout => 'obj_viewer'
   end
 
   def tutorial1; end

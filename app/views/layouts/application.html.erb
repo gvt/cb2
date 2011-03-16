@@ -2,6 +2,14 @@
 <head>
   <title>Cb2</title>
   <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag '3d/Scene.js' %>
+  <%= javascript_include_tag '3d/Vec3.js' %>
+  <%= javascript_include_tag '3d/Matrix3.js' %>
+  <%= javascript_include_tag '3d/Camera.js' %>
+  <%= javascript_include_tag '3d/Mesh.js' %>
+  <%= javascript_include_tag '3d/Light.js' %>
+  <%= javascript_include_tag '3d/setup.js' %>
+
   <%= content_for :head %>
 </head>
 <body>

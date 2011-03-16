@@ -1,7 +1,38 @@
-<% content_for :obj_content, @obj_content %>
+<%# content_for :obj_content, @obj_content %>
 
-<canvas id="canvas" width="640" height="480">
+<!-- <canvas id="canvas" width="640" height="480">
   <p>This example requires a browser that supports the
   <a href="http://www.w3.org/html/wg/html5/">HTML5</a>
   &lt;canvas&gt; feature.</p>
-</canvas>
+</canvas> -->
+
+<style type="text/css">
+	canvas {
+  		border:solid 1px #000;
+  	}
+</style>
+<div class="main section" id="main" style="width:670px;overflow:visible;"> 
+
+<div style="position:relative;">
+<canvas id="scene"></canvas>
+<div id="controls"><select id="meshlist" size=10>
+	<option value="box">Crate</option>
+	<option value="sphere">Earth</option>
+	<option value="earth_low">Earth (low poly)</option>
+	<option value="teapot">Teapot</option>
+	<option value="barrel">Barrel</option>
+	<option value="c_king">Chess piece - King</option>
+	<option value="tv">TV</option>
+</select>
+<br/><br/>
+<input type="checkbox" class="rendercontrol" id="chkrenderlights" /> Render lights<br/>
+<input type="checkbox" class="rendercontrol" id="chklighting" checked /> Lighting<br/>
+<input type="checkbox" class="rendercontrol" id="chkbackface" checked /> Backface culling<br/>
+<input type="checkbox" class="rendercontrol" id="chkzsort" checked /> Z-sorting<br/>
+<input type="checkbox" class="rendercontrol" id="chkfill" checked /> Filled faces<br/>
+<input type="checkbox" class="rendercontrol" id="chkwire" /> Wireframe<br/>
+<input type="checkbox" class="rendercontrol" id="chktexture" checked /> Texture<br/>
+<input type="checkbox" class="rendercontrol" id="chktextureshading" checked /> Texture shading<br/>
+</div>
+<div id="sceneinfo">Nothing to render</div>
+</div>
