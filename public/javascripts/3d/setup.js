@@ -42,7 +42,7 @@ var oScene;
 function init() 
 {
 
-	oScene = new Canvas3D.Scene($("scene"), 500, 400);
+	oScene = new Canvas3D.Scene($("scene"), 800, 600);
 
 	var oCam = new Canvas3D.Camera();
 
@@ -102,7 +102,6 @@ function onSceneLoaded(oHTTP)
 			oScene.addObject(oMesh);
 
 			$("sceneinfo").innerHTML = "Scene currently has " + oMesh._aVertices.length + " vertices, " + oMesh._aFaces.length + " faces"
-			alert("onscenceloded done");
 		}
 	
 	}catch(e)

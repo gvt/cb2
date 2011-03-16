@@ -53,12 +53,12 @@ Canvas3D.Mesh = function() {
 Canvas3D.Mesh.prototype.setMeshData = function(oMeshData, oScene) 
 {
 	this._oMeshData = oMeshData;
-
+	
 	this._aVertices = [];
 	this._aFaces = [];
 	this._aNormals = [];
 	this._aMaterials = [];
-
+	
 	var oPos = this._oPosition;
 
 	var me = this;
@@ -90,7 +90,7 @@ Canvas3D.Mesh.prototype.setMeshData = function(oMeshData, oScene)
 		var oObject = this._oMeshData.obj[o];
 		var aVertices = oObject.vrt;
 		var aTexCoords = oObject.tex;
-
+		
 		this._aTexCoords = aTexCoords;
 
 		var iVertOffset = this._aVertices.length;
@@ -109,7 +109,6 @@ Canvas3D.Mesh.prototype.setMeshData = function(oMeshData, oScene)
 			);
 
 			this._aVertices.push(oVertex);
-
 			fTotalX += oVertex.x;
 			fTotalY += oVertex.y;
 			fTotalZ += oVertex.z;
@@ -391,7 +390,7 @@ Canvas3D.Mesh.prototype._drawTextureTriangle = function(oContext, oMat, oPoint1,
 	var y2 = oPoint2.y;
 	var x3 = oPoint3.x;
 	var y3 = oPoint3.y;
-
+	
 	// trig to calc the angle we need to rotate in order get our texturetriangle in place
 	var dx = x3 - x2;
 	var dy = y3 - y2;
