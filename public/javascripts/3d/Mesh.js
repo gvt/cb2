@@ -60,7 +60,7 @@ Canvas3D.Mesh.prototype.setMeshData = function(oMeshData, oScene)
 	this._aMaterials = [];
 	
 	var oPos = this._oPosition;
-
+	console.log("oPos.x" + oPos)
 	var me = this;
 
 	if (this._oMeshData.mat) {

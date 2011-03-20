@@ -25,7 +25,7 @@ Canvas3D.Scene = function(oCanvas, iWidth, iHeight) {
 
 	this._iWidth = iWidth;
 	this._iHeight = iHeight;
-
+	console.log("iWidth:" + iWidth)
 	oCanvas.width = iWidth;
 	oCanvas.height = iHeight;
 
