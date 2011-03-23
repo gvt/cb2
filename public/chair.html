@@ -13,7 +13,7 @@
 		</style>
 	</head>
 	<body>
-
+		<!-- <script type="text/javascript" src="javascripts/ImageUtils.js"></script> -->
 		<script type="text/javascript" src="javascripts/Three.js"></script>
 		<script type="text/javascript" src="javascripts/RequestAnimationFrame.js"></script>
 		<script>	
@@ -67,9 +67,8 @@
 			//Loading the 3D Obj
 				try{
 					var loader = new THREE.Loader();
-					loader.loadAscii( { model: "3d/pumpkin.js", callback: function( geometry ) { createMesh( geometry )} } );
+					loader.loadAscii( { model: "3d/cattelan_italia_lady_obj/chair.js", callback: function( geometry ) { createMesh( geometry )}}, "3d/cattelan_italia_lady_obj/");
 					}catch(e){alert("EXCEPTION CAUGHT: " + e);}
-			
 			//Listening for actions
 				document.body.appendChild( renderer.domElement );
 				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -81,14 +80,18 @@
 		
 			function createMesh( geometry ) {
 				try{
-					zmesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial({ color: 0xFF9933, shading: THREE.FlatShading }) );
+					var normalizeUVsFlag = 1; // set to 1 if canvas render has missing materials
+					zmesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(), normalizeUVsFlag );
 					zmesh.position.x = zmesh.position.y = zmesh.position.z = 0;
 					zmesh.scale.x = zmesh.scale.y = zmesh.scale.z = 1;
 					zmesh.overdraw = true;
+					zmesh.doublesided = false;
 					scene.addObject( zmesh );
-					}catch(e){alert("EXCEPTION CAUGHT: " + e);}
-					}
-			
+				}catch(e)
+						{alert("EXCEPTION CAUGHT: " + e);}
+					
+			}
+		
 			function onDocumentMouseDown( event ) {
 
 				event.preventDefault();

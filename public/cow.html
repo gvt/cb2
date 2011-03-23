@@ -51,13 +51,13 @@
 				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 		
-			var materials = [];
-
-			for ( var i = 0; i < 6; i ++ ) {
-
-				materials.push( [ new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff } ) ] );
-
-			}
+			// var materials = [];
+			// 
+			// for ( var i = 0; i < 6; i ++ ) {
+			// 
+			// 	materials.push( [ new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff } ) ] );
+			// 
+			// }
 		
 				
 			try{
@@ -139,31 +139,31 @@
 
 			function onDocumentTouchStart( event ) {
 			
-							if ( event.touches.length == 1 ) {
-			
-								event.preventDefault();
-			
-								mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
-								targetRotationOnMouseDownX = targetRotationX;
-								mouseYOnMouseDown = event.touches[ 0 ].pageY - windowHalfY;
-								targetRotationOnMouseDownX = targetRotationX;
-			
-							}
-						}
-			
-						function onDocumentTouchMove( event ) {
-			
-							if ( event.touches.length == 1 ) {
-			
-								event.preventDefault();
-			
-								mouseX = event.touches[ 0 ].pageX - windowHalfX;
-								mouseY = event.touches[ 0 ].pageY - windowHalfY;
-								targetRotationX = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.05;
-								targetRotationY = targetRotationOnMouseDownY + ( mouseY - mouseYOnMouseDown ) * 0.05;
-			
-							}
-						}
+					if ( event.touches.length == 1 ) {
+	
+						event.preventDefault();
+	
+						mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+						targetRotationOnMouseDownX = targetRotationX;
+						mouseYOnMouseDown = event.touches[ 0 ].pageY - windowHalfY;
+						targetRotationOnMouseDownX = targetRotationX;
+	
+					}
+				}
+	
+				function onDocumentTouchMove( event ) {
+	
+					if ( event.touches.length == 1 ) {
+	
+						event.preventDefault();
+	
+						mouseX = event.touches[ 0 ].pageX - windowHalfX;
+						mouseY = event.touches[ 0 ].pageY - windowHalfY;
+						targetRotationX = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.05;
+						targetRotationY = targetRotationOnMouseDownY + ( mouseY - mouseYOnMouseDown ) * 0.05;
+	
+					}
+				}
 			
 
 		    function animate() {
