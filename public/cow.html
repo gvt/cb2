@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>three.js canvas - geometry - cube</title>
+		<meta charset="utf-8">
+		<style type="text/css">
+			body {
+				font-family: Monospace;
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+		<script type="text/javascript" src="javascripts/Three.js"></script>
+		<script type="text/javascript" src="javascripts/RequestAnimationFrame.js"></script>
+		<script>	
+		 
+		var camera, scene, renderer, geometry, zmesh;
+		var targetRotationX = 0;
+		var targetRotationY = 0;
+		var targetRotationOnMouseDownX = 0;
+		var targetRotationOnMouseDownY = 0;
+		
+
+		var mouseX = 0;
+		var mouseY = 0;
+		var mouseXOnMouseDown = 0;
+
+		var windowHalfX = window.innerWidth / 2;
+		var windowHalfY = window.innerHeight / 2;
+
+
+		    init();
+		    animate();
+		
+		    function init() {
+
+		        camera = new THREE.Camera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+		        camera.position.z = 10;
+
+		        scene = new THREE.Scene();
+							
+		        renderer = new THREE.CanvasRenderer();
+		        renderer.setSize( window.innerWidth, window.innerHeight );
+				
+		        document.body.appendChild( renderer.domElement );
+				document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+				document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+				document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+		
+			// var materials = [];
+			// 
+			// for ( var i = 0; i < 6; i ++ ) {
+			// 
+			// 	materials.push( [ new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff } ) ] );
+			// 
+			// }
+		
+				
+			try{
+				var loader = new THREE.Loader();
+				loader.loadAscii( { model: "3d/cow.js", callback: function( geometry ) { createMesh( geometry )} } );
+			}catch(e){
+				alert("EXCEPTION CAUGHT: " + e);
+				}
+				// Lights
+
+								var ambientLight = new THREE.AmbientLight( Math.random() * 0x10 );
+								scene.addLight( ambientLight );
+
+								var directionalLight = new THREE.DirectionalLight( Math.random() * 0xffffff );
+								directionalLight.position.x = Math.random() - 0.5;
+								directionalLight.position.y = Math.random() - 0.5;
+								directionalLight.position.z = Math.random() - 0.5;
+								directionalLight.position.normalize();
+								scene.addLight( directionalLight );
+
+								var directionalLight = new THREE.DirectionalLight( Math.random() * 0xffffff );
+								directionalLight.position.x = Math.random() - 0.5;
+								directionalLight.position.y = Math.random() - 0.5;
+								directionalLight.position.z = Math.random() - 0.5;
+								directionalLight.position.normalize();
+								scene.addLight( directionalLight );
+				}
+		
+		
+			function createMesh( geometry ) {
+				try{
+				zmesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0xffffff, shading: THREE.FlatShading } ) );
+				zmesh.position.x = zmesh.position.y = zmesh.position.z = 0;
+				zmesh.scale.x = zmesh.scale.y = zmesh.scale.z = 1;
+				zmesh.overdraw = true;
+				scene.addObject( zmesh );
+				}catch(e){
+						alert("EXCEPTION CAUGHT: " + e);
+						}
+
+			}
+			
+			function onDocumentMouseDown( event ) {
+
+				event.preventDefault();
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.addEventListener( 'mouseout', onDocumentMouseOut, false );
+
+				mouseXOnMouseDownX = event.clientX - windowHalfX;
+				targetRotationOnMouseDownX = targetRotationX;
+					mouseXOnMouseDownY = event.clientY - windowHalfY;
+					targetRotationOnMouseDownY = targetRotationY;
+			}
+
+			function onDocumentMouseMove( event ) {
+
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+
+				targetRotationX = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * .02;
+				targetRotationY = targetRotationOnMouseDownY + ( mouseX - mouseXOnMouseDown ) * .02;
+			}
+
+			function onDocumentMouseUp( event ) {
+
+				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+			}
+
+			function onDocumentMouseOut( event ) {
+
+				document.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+				document.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+			}
+
+			function onDocumentTouchStart( event ) {
+			
+					if ( event.touches.length == 1 ) {
+	
+						event.preventDefault();
+	
+						mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+						targetRotationOnMouseDownX = targetRotationX;
+						mouseYOnMouseDown = event.touches[ 0 ].pageY - windowHalfY;
+						targetRotationOnMouseDownX = targetRotationX;
+	
+					}
+				}
+	
+				function onDocumentTouchMove( event ) {
+	
+					if ( event.touches.length == 1 ) {
+	
+						event.preventDefault();
+	
+						mouseX = event.touches[ 0 ].pageX - windowHalfX;
+						mouseY = event.touches[ 0 ].pageY - windowHalfY;
+						targetRotationX = targetRotationOnMouseDownX + ( mouseX - mouseXOnMouseDown ) * 0.05;
+						targetRotationY = targetRotationOnMouseDownY + ( mouseY - mouseYOnMouseDown ) * 0.05;
+	
+					}
+				}
+			
+
+		    function animate() {
+
+		        // Include examples/js/RequestAnimationFrame.js for cross-browser compatibility.
+		        requestAnimationFrame( animate );
+		        render();
+
+		    }
+
+		    function render() {
+				zmesh.rotation.y += ( targetRotationY - zmesh.rotation.y ) * 0.5;
+				zmesh.rotation.x += ( targetRotationX - zmesh.rotation.x ) * 0.5;
+		        renderer.render( scene, camera );
+			}
+		
+		</script>
+	<p>This is a test</p>
+	</body>
+</html>

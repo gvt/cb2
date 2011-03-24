@@ -1,36 +1,5 @@
-<%# content_for :obj_content, @obj_content %>
-
-<!-- <canvas id="canvas" width="640" height="480">
-  <p>This example requires a browser that supports the
-  <a href="http://www.w3.org/html/wg/html5/">HTML5</a>
-  &lt;canvas&gt; feature.</p>
-</canvas> -->
-
-<style type="text/css">
-	canvas {
-  		border:solid 1px #000;
-  	}
-</style>
-<div class="main section" id="main" style="width:670px;overflow:visible;"> 
-
-<div style="position:relative;">
-<canvas id="scene"></canvas>
-<div id="controls"><select id="meshlist" size=10>
-	<option value="box">Crate</option>
-	<option value="key">Key</option>
-	<option value="vase">vase</option>
-	<option value="3d_obj">3d.obj</option>
-	<option value="desk">Desk</option>
-</select>
-<br/><br/>
-<input type="checkbox" class="rendercontrol" id="chkrenderlights" /> Render lights<br/>
-<input type="checkbox" class="rendercontrol" id="chklighting"  /> Lighting<br/>
-<input type="checkbox" class="rendercontrol" id="chkbackface"/> Backface culling<br/>
-<input type="checkbox" class="rendercontrol" id="chkzsort"/> Z-sorting<br/>
-<input type="checkbox" class="rendercontrol" id="chkfill" /> Filled faces<br/>
-<input type="checkbox" class="rendercontrol" id="chkwire" checked /> Wireframe<br/>
-<input type="checkbox" class="rendercontrol" id="chktexture"> Texture<br/>
-<input type="checkbox" class="rendercontrol" id="chktextureshading"/> Texture shading<br/>
-</div>
-<div id="sceneinfo">Nothing to render</div>
-</div>
+<%=link_to "Teapot", "/teapot.html" %>
+<br/>
+<%=link_to "Cow", "/cow.html" %>
+<br/>
+<%=link_to "Pumpkin", "/pumpkin.html" %>
