@@ -1,4 +1,14 @@
 .bundle
-db/*.sqlite3
-log/*.log
-tmp/
+tmp/*
+*.cache
+*.log
+*.pid
+*.sqlite3
+doc/app
+doc/api
+doc/plugins
+*.tmproj
+config/database.yml
+.idea/*
+.DS_Store
+public/system/*
