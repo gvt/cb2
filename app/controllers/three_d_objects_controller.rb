@@ -1,4 +1,5 @@
 class ThreeDObjectsController < ApplicationController
+  
   def new
     @object = ThreeDObject.new
   end

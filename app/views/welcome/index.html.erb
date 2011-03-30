@@ -1,1 +1,7 @@
-<%= link_to("Upload a new object", three_d_objects_new_path)%>
+<%- @objects.each do |o| %>
+	<li>
+	<%= link_to("#{File.basename(o.object.path, ".obj")}", three_d_object_path(o))%>
+	</li>
+<%-end%>
+
+<%= link_to("Upload a new object", new_three_d_object_path)%>

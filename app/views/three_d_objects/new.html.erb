@@ -2,10 +2,10 @@
 
 <p>Upload a new 3D object in the .obj format</p>
 
-<% form_for :object, @object, :html => { :multipart => true } do |form| %>
+<%= form_for :object, @object, :url => three_d_object_path, :html => { :multipart => true } do |form| %>
 	
 	<%= form.file_field :object %>
 	<br/>
 	<%= form.submit('Save')%>
 
-<% end %>
+<%- end %>
