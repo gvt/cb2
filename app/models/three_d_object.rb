@@ -11,4 +11,8 @@ class ThreeDObject < ActiveRecord::Base
     self.object = file
     self.save!
   end
+  
+  def filename
+    File.basename(self.object.path, ".obj")
+  end
 end
