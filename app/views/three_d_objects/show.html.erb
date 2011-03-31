@@ -64,7 +64,7 @@
 			try{
 			zmesh = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial( { color: 0xffffff, shading: THREE.FlatShading } ) );
 			zmesh.position.x = zmesh.position.y = zmesh.position.z = 0;
-			zmesh.scale.x = zmesh.scale.y = zmesh.scale.z = 1;
+			zmesh.scale.x = zmesh.scale.y = zmesh.scale.z = .05;
 			zmesh.overdraw = true;
 			scene.addObject( zmesh );
 			}catch(e){

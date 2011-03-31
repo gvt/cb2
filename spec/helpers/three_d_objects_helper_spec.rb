@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe ThreeDObjectsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+# describe ThreeDObjectsHelper do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end
