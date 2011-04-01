@@ -6,5 +6,6 @@ gem 'json'
 gem "paperclip", "~> 2.3"
 
 group :test, :development do
-  gem "rspec-rails"
+	gem "rspec-rails"
+	gem "factory_girl_rails"
 end

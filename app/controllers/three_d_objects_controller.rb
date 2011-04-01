@@ -6,18 +6,20 @@ class ThreeDObjectsController < ApplicationController
   
   def show
     @object = ThreeDObject.find(params[:id])
-    object_name = File.basename(@object.object.path, ".obj")
-    @object_js = "/system/objects/#{@object.id}/original/#{object_name}.js"
+    @object_js = "/system/objects/#{@object.id}/original/#{@object.filename}.js"
   end
   
   def create
-    
-    if @object = ThreeDObject.create(params[:object])
-      file_name = File.basename(@object.object.path, ".obj")
-      `python public/3d/convert_obj_threejs_slim.py -i #{@object.object.path} -o public/system/objects/#{@object.id}/original/#{file_name}.js`
-      redirect_to(three_d_object_path(@object), :notice => "Your object saved!")
+    @object = ThreeDObject.new(params[:object])
+    if @object.save
+      convert = %x[python public/3d/convert_obj_threejs_slim.py -i #{@object.object.path} -o public/system/objects/#{@object.id}/original/#{@object.filename}.js >/dev/null; echo $?;]
+      if convert.to_i == 0
+        redirect_to(three_d_object_path(@object), :notice => "Your object saved!")
+      else
+         redirect_to(new_three_d_object_path, :error => "Something is wrong with your .obj file")
+      end
     else
-      redirect_to (three_d_objects_new_path)
+      redirect_to(new_three_d_object_path, :error => @object.errors.full_messages.to_sentence)
     end
   end
 
